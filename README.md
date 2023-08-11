@@ -10,7 +10,7 @@
 ```shell
 cd Autoware
 git clone https://github.com/pixmoving-moveit/tier4_calibration_tools_launcher.git
-vcs import src < pixkit_sensor_kit.repos
+vcs import src < tier4_calibration_tools_launcher/pixkit_sensor_kit.repos
 rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
