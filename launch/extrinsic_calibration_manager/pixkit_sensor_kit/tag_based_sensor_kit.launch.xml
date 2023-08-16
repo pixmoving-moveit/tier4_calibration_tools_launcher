@@ -55,10 +55,10 @@
   </node>
 
   <!-- image decompressor -->
-  <!-- <node pkg="image_transport_decompressor" exec="image_transport_decompressor_node" name="decompressor" output="screen">
+  <node pkg="image_transport_decompressor" exec="image_transport_decompressor_node" name="decompressor" output="screen">
     <remap from="decompressor/input/compressed_image" to="$(var image_compressed_topic)"/>
     <remap from="decompressor/output/raw_image" to="$(var image_decompressed_topic)"/>
-  </node> -->
+  </node>
 
   <!-- tag based calibrator -->
   <include file="$(find-pkg-share tier4_calibration_tools_launcher)/launch/extrinsic_tag_based_calibrator/calibrator.launch.xml" if="$(var calibrate_sensor)">
@@ -86,18 +86,22 @@
 
     <node pkg="extrinsic_interactive_calibrator" exec="interactive_calibrator" name="interactive_calibrator" output="screen">
       <remap from="pointcloud" to="$(var pointcloud_topic)"/>
-      <remap from="image" to="$(var image_rectified_topic)"/>
-      <remap from="camera_info" to="$(var camera_info_rectified_topic)"/>
+      <!-- <remap from="image" to="$(var image_rectified_topic)"/>
+      <remap from="camera_info" to="$(var camera_info_rectified_topic)"/> -->
+      <remap from="image" to="$(var image_compressed_topic)"/>
+      <remap from="camera_info" to="$(var camera_info_topic)"/>
       <remap from="calibration_points_input" to="calibration_points"/>
 
       <param name="camera_parent_frame" value="$(var parent_frame)"/>
       <param name="camera_frame" value="$(var camera_frame)"/>
       <param name="use_calibration_api" value="false"/>
       <param name="can_publish_tf" value="false"/>
-      <param name="use_compressed" value="false"/>
+      <!-- <param name="use_compressed" value="false"/> -->
     </node>
 
-    <node pkg="rviz2" exec="rviz2" name="rviz2" output="screen" args="-d $(var rviz_profile)" if="$(var rviz)"/>
     <include file="$(find-pkg-share intrinsic_camera_calibration)/launch/optimizer.launch.xml"/>
+    <node pkg="rviz2" exec="rviz2" name="rviz2" output="screen" args="-d $(var rviz_profile)" if="$(var rviz)"/>
   </group>
+
+  <include file="$(find-pkg-share tier4_calibration_tools_launcher)/launch/camera_rectified/relay_calibration_points.launch.xml" />
 </launch>

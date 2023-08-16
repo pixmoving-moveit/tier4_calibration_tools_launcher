@@ -9,6 +9,14 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+install(
+  PROGRAMS
+  script/undistorted_image_node.py
+  DESTINATION
+  lib/${PROJECT_NAME}
+)
+
+
 ament_auto_package(
   INSTALL_TO_SHARE
   config

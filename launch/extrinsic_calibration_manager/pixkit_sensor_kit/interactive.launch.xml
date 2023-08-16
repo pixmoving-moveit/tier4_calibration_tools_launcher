@@ -5,10 +5,11 @@
   <arg name="camera_name"  default="traffic_light_left_camera"/>
   <arg name="rviz" default="true"/>
   <arg name="use_concatenated_pointcloud" default="true"/>
+  <let name="function_name" value="extrinsic_calibration_manager"/>
 
   <group>
     <!-- <push-ros-namespace namespace="sensor_kit"/> -->
-    <include file="$(find-pkg-share calibration_tools_launcher)/launch/$(var sensor_model)/interactive_sensor_kit.launch.xml" if="$(var rviz)">
+    <include file="$(find-pkg-share tier4_calibration_tools_launcher)/launch/$(var function_name)/$(var sensor_model)/interactive_sensor_kit.launch.xml" if="$(var rviz)">
       <arg name="vehicle_id" value="$(var vehicle_id)"/>
       <arg name="camera_name" value="$(var camera_name)"/>
       <arg name="sensor_model" value="$(var sensor_model)"/>

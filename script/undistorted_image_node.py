@@ -10,26 +10,32 @@ from rclpy.qos import qos_profile_sensor_data
 class UndistortedImageNode(Node):
     def __init__(self):
         super().__init__('undistorted_image_node')
+        # Param
+        # input_image_raw = self.declare_parameter("input_image_raw", "/sensing/camera/traffic_light/image_raw").get_parameter_value().string_value
+        # input_camera_info = self.declare_parameter("input_camera_info", "/sensing/camera/traffic_light/camera_info").get_parameter_value().string_value
+
+        # output_image_raw = self.declare_parameter("output_image_raw", "/sensing/camera/traffic_light/rectified/image_raw").get_parameter_value().string_value
+        # output_camera_info = self.declare_parameter("output_camera_info", "/sensing/camera/traffic_light/rectified/camera_info").get_parameter_value().string_value
+
         # Pub
         self.undistorted_image_publisher = self.create_publisher(
             Image,
-            '/sensing/camera/traffic_light/rectified/image_raw',
+            "output_image_raw",
             10)
         self.undistorted_camera_info_publisher = self.create_publisher(
             CameraInfo,
-            '/sensing/camera/traffic_light/rectified/camera_info',
+            "output_camera_info",
             10)
 
         # Sub
         self.subscription = self.create_subscription(
             Image,
-            '/sensing/camera/traffic_light/image_raw',
-            # '/sensing/camera/traffic_light/image_raw/compressed',
+            "input_image_raw",
             self.image_callback,
             qos_profile_sensor_data)
         self.camera_info_subscription = self.create_subscription(
             CameraInfo,
-            '/sensing/camera/traffic_light/camera_info',
+            "input_camera_info",
             self.camera_info_callback,
             10)
         # 
@@ -81,7 +87,6 @@ def main(args=None):
     rclpy.init(args=args)
     node = UndistortedImageNode()
     rclpy.spin(node)
-    node.destroy_node()
     rclpy.shutdown()
 
 if __name__ == '__main__':

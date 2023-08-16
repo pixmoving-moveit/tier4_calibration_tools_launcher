@@ -19,6 +19,8 @@
   <!-- interactive only -->
   <arg name="interactive_use_concatenated" default="true"/>
 
+  <include if="$(var logging_simulator)" file="$(find-pkg-share tier4_calibration_tools_launcher)/launch/camera_rectified/camera_rectified.launch.py" />
+  
   <!-- logging simulator -->
   <include if="$(var logging_simulator)" file="$(find-pkg-share autoware_launch)/launch/logging_simulator.launch.xml">
     <arg name="sensor_model" value="$(var sensor_model)"/>
@@ -37,6 +39,7 @@
     <arg name="control" value="false"/>
     <arg name="rviz" value="false"/>
   </include>
+
 
   <!-- fake transform -->
   <node pkg="tf2_ros" exec="static_transform_publisher" name="map2base_link" output="screen" args="0 0 0 0 0 0 map base_link"/>

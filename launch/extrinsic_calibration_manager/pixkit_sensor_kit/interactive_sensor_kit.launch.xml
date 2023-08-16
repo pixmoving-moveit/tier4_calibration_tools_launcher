@@ -6,39 +6,16 @@
   <arg name="parent_frame" default="base_link"/>
   <arg name="camera_name" default="traffic_light_left_camera"/>
 
-  <let name="image_topic" value="/sensing/camera/$(var camera_name)/image_raw"/>
   <let name="image_topic" value="/sensing/camera/traffic_light/image_raw" if="$(eval &quot;'$(var camera_name)' == 'traffic_light_left_camera' &quot;)"/>
-
-  <let name="image_compressed_topic" value="/sensing/camera/$(var camera_name)/image_raw/compressed"/>
   <let name="image_compressed_topic" value="/sensing/camera/traffic_light/image_raw/compressed" if="$(eval &quot;'$(var camera_name)' == 'traffic_light_left_camera' &quot;)"/>
-
-  <let name="camera_info_topic" value="/sensing/camera/$(var camera_name)/camera_info"/>
   <let name="camera_info_topic" value="/sensing/camera/traffic_light/camera_info" if="$(eval &quot;'$(var camera_name)' == 'traffic_light_left_camera' &quot;)"/>
 
-  <let name="pointcloud_topic" value="/sensing/lidar/top/pointcloud_raw" if="$(eval &quot;'$(var camera_name)' == 'camera0' &quot;)"/>
-  <let name="pointcloud_topic" value="/sensing/lidar/top/pointcloud_raw" if="$(eval &quot;'$(var camera_name)' == 'camera1' &quot;)"/>
-  <let name="pointcloud_topic" value="/sensing/lidar/top/pointcloud_raw" if="$(eval &quot;'$(var camera_name)' == 'camera2' &quot;)"/>
-  <let name="pointcloud_topic" value="/sensing/lidar/top/pointcloud_raw" if="$(eval &quot;'$(var camera_name)' == 'camera3' &quot;)"/>
-  <let name="pointcloud_topic" value="/sensing/lidar/top/pointcloud_raw" if="$(eval &quot;'$(var camera_name)' == 'camera4' &quot;)"/>
-  <let name="pointcloud_topic" value="/sensing/lidar/top/pointcloud_raw" if="$(eval &quot;'$(var camera_name)' == 'camera5' &quot;)"/>
-  <let name="pointcloud_topic" value="/sensing/lidar/top/outlier_filtered/pointcloud" if="$(eval &quot;'$(var camera_name)' == 'traffic_light_left_camera' &quot;)"/>
+  <let name="pointcloud_topic" value="/sensing/lidar/top/ouster/points" if="$(eval &quot;'$(var camera_name)' == 'traffic_light_left_camera' &quot;)"/>
 
   <let name="calibrate_sensor" value="false"/>
-  <let name="calibrate_sensor" value="true" if="$(eval &quot;'$(var camera_name)' == 'camera0' &quot;)"/>
-  <let name="calibrate_sensor" value="true" if="$(eval &quot;'$(var camera_name)' == 'camera1' &quot;)"/>
-  <let name="calibrate_sensor" value="true" if="$(eval &quot;'$(var camera_name)' == 'camera2' &quot;)"/>
-  <let name="calibrate_sensor" value="true" if="$(eval &quot;'$(var camera_name)' == 'camera3' &quot;)"/>
-  <let name="calibrate_sensor" value="true" if="$(eval &quot;'$(var camera_name)' == 'camera4' &quot;)"/>
-  <let name="calibrate_sensor" value="true" if="$(eval &quot;'$(var camera_name)' == 'camera5' &quot;)"/>
   <let name="calibrate_sensor" value="true" if="$(eval &quot;'$(var camera_name)' == 'traffic_light_left_camera' &quot;)"/>
 
   <let name="camera_frame" value=""/>
-  <let name="camera_frame" value="camera0/camera_link" if="$(eval &quot;'$(var camera_name)' == 'camera0' &quot;)"/>
-  <let name="camera_frame" value="camera1/camera_link" if="$(eval &quot;'$(var camera_name)' == 'camera1' &quot;)"/>
-  <let name="camera_frame" value="camera2/camera_link" if="$(eval &quot;'$(var camera_name)' == 'camera2' &quot;)"/>
-  <let name="camera_frame" value="camera3/camera_link" if="$(eval &quot;'$(var camera_name)' == 'camera3' &quot;)"/>
-  <let name="camera_frame" value="camera4/camera_link" if="$(eval &quot;'$(var camera_name)' == 'camera4' &quot;)"/>
-  <let name="camera_frame" value="camera5/camera_link" if="$(eval &quot;'$(var camera_name)' == 'camera5' &quot;)"/>
   <let name="camera_frame" value="traffic_light_left_camera" if="$(eval &quot;'$(var camera_name)' == 'traffic_light_left_camera' &quot;)"/>
 
   <!-- extrinsic_calibration_client -->
@@ -57,18 +34,23 @@
     [$(var camera_frame)]"/>
   </node>
 
+  <let name="image_rectified_topic" value="/sensing/camera/traffic_light/rectified/image_raw" if="$(eval &quot;'$(var camera_name)' == 'traffic_light_left_camera' &quot;)"/>
+  <let name="camera_info_rectified_topic" value="/sensing/camera/traffic_light/rectified/camera_info" if="$(eval &quot;'$(var camera_name)' == 'traffic_light_left_camera' &quot;)"/>
+
   <!-- interactive calibrator -->
   <group if="$(var calibrate_sensor)">
     <push-ros-namespace namespace="$(var parent_frame)/$(var camera_frame)"/>
 
     <node pkg="extrinsic_interactive_calibrator" exec="interactive_calibrator" name="interactive_calibrator" output="screen">
       <remap from="pointcloud" to="$(var pointcloud_topic)"/>
-      <remap from="image" to="$(var image_compressed_topic)"/>
+      <remap from="image" to="$(var image_topic)"/>
       <remap from="camera_info" to="$(var camera_info_topic)"/>
       <remap from="calibration_points_input" to="calibration_points"/>
 
       <param name="camera_parent_frame" value="$(var parent_frame)"/>
       <param name="camera_frame" value="$(var camera_frame)"/>
+      <param name="use_compressed" value="false"/>
+
     </node>
 
     <include file="$(find-pkg-share intrinsic_camera_calibration)/launch/optimizer.launch.xml"/>
