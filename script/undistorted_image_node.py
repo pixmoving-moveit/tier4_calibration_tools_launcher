@@ -87,6 +87,7 @@ def main(args=None):
     rclpy.init(args=args)
     node = UndistortedImageNode()
     rclpy.spin(node)
+    node.destory_node()
     rclpy.shutdown()
 
 if __name__ == '__main__':
