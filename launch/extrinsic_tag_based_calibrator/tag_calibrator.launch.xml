@@ -13,8 +13,8 @@
   <!-- pandar_40p, pandar_qt-->
   <arg name="calibration_mode" default="automatic"/>
 
-  <let name="image_rectified_topic" value="/sensing/camera/traffic_light/rectified/image_raw"/>
-  <let name="camera_info_rectified_topic" value="/sensing/camera/traffic_light/rectified/camera_info"/>
+  <let name="image_rectified_topic" value="/sensing/camera/traffic_light/flir_camera/rectified/image_raw"/>
+  <let name="camera_info_rectified_topic" value="/sensing/camera/traffic_light/flir_camera/rectified/camera_info"/>
 
   <include file="$(find-pkg-share tier4_calibration_tools_launcher)/launch/lidartag/lidartag_$(var lidar_model).launch.xml">
     <arg name="pointcloud_topic" value="$(var pointcloud_topic)"/>

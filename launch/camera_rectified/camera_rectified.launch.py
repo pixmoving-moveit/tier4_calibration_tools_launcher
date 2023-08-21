@@ -11,10 +11,10 @@ def generate_launch_description():
       executable='undistorted_image_node.py',
       name='undistorted_image_node',
       remappings=[
-        ('input_image_raw', '/sensing/camera/traffic_light/image_raw'),
-        ('input_camera_info', '/sensing/camera/traffic_light/camera_info'),
+        ('input_image_raw', '/sensing/camera/traffic_light/flir_camera/image_raw'),
+        ('input_camera_info', '/sensing/camera/traffic_light/flir_camera/camera_info'),
 
-        ('output_image_raw', '/sensing/camera/traffic_light/rectified/image_raw'),
-        ('output_camera_info', '/sensing/camera/traffic_light/rectified/camera_info')],
+        ('output_image_raw', '/sensing/camera/traffic_light/flir_camera/rectified/image_raw'),
+        ('output_camera_info', '/sensing/camera/traffic_light/flir_camera/rectified/camera_info')],
       output='screen')
     return LaunchDescription([node])

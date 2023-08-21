@@ -6,6 +6,7 @@
   <arg name="rviz" default="true"/>
   <let name="function_name" value="extrinsic_calibration_manager"/>
 
+  <include file="$(find-pkg-share tier4_calibration_tools_launcher)/launch/camera_rectified/camera_rectified.launch.py" />
 
   <group>
     <push-ros-namespace namespace="sensor_kit"/>
