@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ouster">
+
+    <xacro:property name="parent" default="os_sensor_top"/>
+    <link name="${parent}" />
+    <link name="os_lidar_top" />
+
+    <joint name="os_lidar_top_joint1" type="fixed">
+      <origin rpy="0.0 0.0 -3.142 " xyz="0.0 0.0 0.036"/>
+      <parent link="${parent}"/>
+      <child link="os_lidar_top"/>
+    </joint>
+    
+</robot>
