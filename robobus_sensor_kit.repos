@@ -36,3 +36,8 @@ repositories:
     type: git
     url: https://github.com/pixmoving-moveit/tier4_calibration_tools_launcher.git
     version: robobus_sensor_kit
+  tier4_calibration_tools_script:
+    type: git
+    url: https://github.com/pixmoving-moveit/tier4_calibration_tools_launcher.git
+    version: calibration_tools_script
+  
