@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
   <arg name="vehicle_id" default="default"/>
-  <let name="sensor_model" value="pixkit_sensor_kit"/>
+  <let name="sensor_model" value="robobus_sensor_kit"/>
   <let name="base_frame" value="base_link"/>
   <let name="parent_frame" value="sensor_kit_base_link"/>
-  <let name="rviz_profile" value="$(find-pkg-share tier4_calibration_tools_launcher)/rviz/pixkit_sensor_kit/rs16_top.rviz"/>
+  <let name="rviz_profile" value="$(find-pkg-share tier4_calibration_tools_launcher)/rviz/ground_plane.rviz"/>
   <arg name="rviz" default="true"/>
 
   <!-- extrinsic_calibration_client -->
@@ -23,8 +23,7 @@
   <node pkg="extrinsic_calibration_manager" exec="extrinsic_calibration_manager" name="extrinsic_calibration_manager" output="screen">
     <param name="parent_frame" value="$(var parent_frame)"/>
     <param name="child_frames" value="
-    [rs16_top_base_link,
-    ouster_top_base_link]"/>
+    [os_sensor_ancillary]"/>
   </node>
 
   <!-- velodyne_top_base_link: extrinsic_ground_plane_calibrator -->
@@ -33,18 +32,18 @@
       <arg name="ns" value="$(var parent_frame)/ouster_top_base_link"/>
       <arg name="base_frame" value="$(var base_frame)"/>
       <arg name="parent_frame" value="$(var parent_frame)"/>
-      <arg name="child_frame" value="ouster_top_base_link"/>
-      <arg name="pointcloud_topic" value="/sensing/lidar/top/ouster/points"/>
+      <arg name="child_frame" value="os_sensor_ancillary"/>
+      <arg name="pointcloud_topic" value="/sensing/lidar/ancillary/ouster/points"/>
 
       <!-- The following parameters are only needed when calibrating in a closed space, where the ranges were hardcoded for experiment purposes -->
-      <arg name="crop_box_min_x" value="-8.0" />
+      <!-- <arg name="crop_box_min_x" value="-8.0" />
       <arg name="crop_box_min_y" value="-3.3" />
       <arg name="crop_box_min_z" value="-10.0" />
 
       <arg name="crop_box_max_x" value="8.0" />
       <arg name="crop_box_max_y" value="3.3" />
       <arg name="crop_box_max_z" value="0.0" />
-      <arg name="use_pca_rough_normal" value="false" />
+      <arg name="use_pca_rough_normal" value="false" /> -->
     </include>
   </group>
 

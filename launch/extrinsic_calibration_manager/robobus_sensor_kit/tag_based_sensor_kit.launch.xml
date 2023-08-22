@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
   <arg name="vehicle_id" default="default"/>
-  <let name="sensor_model" value="pixkit_sensor_kit"/>
+  <let name="sensor_model" value="robobus_sensor_kit"/>
   <let name="parent_frame" value="sensor_kit_base_link"/>
   <let name="function_name" value="extrinsic_calibration_manager"/>
 
@@ -27,10 +27,9 @@
   <let name="camera_frame" value="traffic_light_left_camera" if="$(eval &quot;'$(var camera_name)' == 'traffic_light_left_camera' &quot;)"/>
 
   <let name="rviz_profile" value=""/>
-  <let name="rviz_profile" value="$(find-pkg-share tier4_calibration_tools_launcher)/rviz/pixkit_sensor_kit/tag_calib_camera5_velodyne_top.rviz" if="$(eval &quot;'$(var camera_name)' == 'camera5' &quot;)"/>
   <let
     name="rviz_profile"
-    value="$(find-pkg-share tier4_calibration_tools_launcher)/rviz/$(var sensor_model)/tag_calib_traffic_light_camera_lidar_top.rviz"
+    value="$(find-pkg-share tier4_calibration_tools_launcher)/rviz/tag_calib_traffic_light_camera_lidar_top.rviz"
     if="$(eval &quot;'$(var camera_name)' == 'traffic_light_left_camera' &quot;)"
   />
 

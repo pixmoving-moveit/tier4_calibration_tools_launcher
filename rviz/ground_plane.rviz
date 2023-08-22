@@ -98,9 +98,9 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 5370
+      Max Intensity: 5383
       Min Color: 0; 0; 0
-      Min Intensity: 1
+      Min Intensity: 0
       Name: top
       Position Transformer: XYZ
       Selectable: true
@@ -113,7 +113,7 @@ Visualization Manager:
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Best Effort
-        Value: /sensing/lidar/top/ouster/points
+        Value: /sensing/lidar/ancillary/ouster/points
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
@@ -143,14 +143,14 @@ Visualization Manager:
       Length: 1.5
       Name: ground_plane
       Radius: 0.05000000074505806
-      Reference Frame: os_lidar_top+ground_plane
+      Reference Frame: os_lidar_ancillary+ground_plane
       Value: true
     - Class: rviz_default_plugins/Axes
       Enabled: true
       Length: 1.5
       Name: ground_plane_raw
       Radius: 0.05000000074505806
-      Reference Frame: os_lidar_top_ground_plane_raw
+      Reference Frame: os_lidar_ancillary_ground_plane_raw
       Value: true
     - Class: rviz_default_plugins/MarkerArray
       Enabled: false

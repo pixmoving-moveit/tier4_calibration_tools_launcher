@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
   <arg name="vehicle_id" default="default"/>
-  <arg name="sensor_model" default="pixkit_sensor_kit"/>
+  <arg name="sensor_model" default="robobus_sensor_kit"/>
   <!-- <arg name="parent_frame" default="sensor_kit_base_link"/> -->
   <arg name="parent_frame" default="base_link"/>
   <arg name="camera_name" default="traffic_light_left_camera"/>
