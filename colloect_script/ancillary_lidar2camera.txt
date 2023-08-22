@@ -1,5 +1,0 @@
-/sensing/camera/traffic_light/flir_camera/image_raw
-/sensing/camera/traffic_light/flir_camera/image_raw/compressed
-/sensing/camera/traffic_light/flir_camera/camera_info
-/sensing/lidar/ancillary/ouster/points
-/sensing/lidar/top/ouster/points

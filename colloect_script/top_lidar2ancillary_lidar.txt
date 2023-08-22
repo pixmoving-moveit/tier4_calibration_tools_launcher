@@ -1,2 +1,0 @@
-/sensing/lidar/top/ouster/points
-/sensing/lidar/ancillary/ouster/points
