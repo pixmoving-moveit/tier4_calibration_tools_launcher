@@ -9,8 +9,8 @@
 ## Installation procedures
 ```shell
 cd Autoware
-git clone https://github.com/pixmoving-moveit/tier4_calibration_tools_launcher.git
-vcs import src < tier4_calibration_tools_launcher/calibration_tools.repos
+wget https://github.com/pixmoving-moveit/tier4_calibration_tools_launcher/blob/main/calibration_tools.repos 
+vcs import src < calibration_tools.repos
 rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
