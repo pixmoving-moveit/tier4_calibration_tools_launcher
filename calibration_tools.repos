@@ -31,13 +31,17 @@ repositories:
     type: git
     url: https://github.com/tier4/image_pipeline.git
     version: 47964112293eb19f9f57254b2e6b68706954cc63
-# pixkit_sensor_kit
-  autoware/tier4_calibration_tools_launcher:
+# pixmoving
+  autoware/tier4_calibration_tools_launcher/external/robobus_sensor_kit_calibration:
     type: git
-    url: https://github.com/pixmoving-moveit/tier4_calibration_tools_launcher.git
-    version: robobus_sensor_kit
-  tier4_calibration_tools_script:
+    url: https://github.com/pixmoving-moveit/robobus_sensor_kit_calibration.git
+    version: main
+  autoware/tier4_calibration_tools_launcher/external/pixkit_sensor_kit_calibration:
     type: git
-    url: https://github.com/pixmoving-moveit/tier4_calibration_tools_launcher.git
-    version: calibration_tools_script
+    url: https://github.com/pixmoving-moveit/pixkit_sensor_kit_calibration.git
+    version: main
+  vendor/output_rectified_image:
+    type: git
+    url: https://github.com/pixmoving-moveit/output_rectified_image.git
+    version: main
   
