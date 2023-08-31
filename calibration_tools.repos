@@ -48,7 +48,7 @@ repositories:
   autoware/pixmoving_calibration_tools/multi_lidar_calibration_ros2:
     type: git
     url: https://github.com/pixmoving-moveit/multi_lidar_calibration_ros2.git
-    version: main
+    version: feature/map_matching
   # imu intrinsic calibration
   autoware/pixmoving_calibration_tools/imu_utils:
     type: git
